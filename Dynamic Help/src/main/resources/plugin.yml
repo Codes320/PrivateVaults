@@ -1,0 +1,4 @@
+name: DynamicHelp
+version: ${project.version}
+main: com.codes.Main
+api-version: 1.16
