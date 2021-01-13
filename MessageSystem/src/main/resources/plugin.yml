@@ -1,4 +1,0 @@
-name: MessageSystem
-version: ${project.version}
-main: net.codes.Main
-api-version: 1.16
