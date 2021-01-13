@@ -10,11 +10,6 @@ public final class Main extends JavaPlugin {
 
     public static HashMap<UUID, ItemsManager> cache = new HashMap<>();
 
-    ItemsManager manager;
-
-    public Main(ItemsManager manager) {
-        this.manager = manager;
-    }
 
     @Override
     public void onEnable() {
