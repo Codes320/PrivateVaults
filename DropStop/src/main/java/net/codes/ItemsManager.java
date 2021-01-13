@@ -8,7 +8,7 @@ import java.util.List;
 public class ItemsManager {
     private List<ItemStack> items;
 
-    public void PlayerItems() {
+    public ItemsManager () {
         this.items = new ArrayList<>();
     }
 

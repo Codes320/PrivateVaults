@@ -7,13 +7,10 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class DropListener implements Listener {
-
-    private ItemsManager manager;
     private Main main;
 
-    public DropListener() {
-        this.manager = manager;
-        this.main = main;
+    public DropListener(Main max) {
+        this.main = max;
     }
 
 
@@ -21,10 +18,9 @@ public class DropListener implements Listener {
     public void onDrop(PlayerDropItemEvent e) {
         Player player = e.getPlayer();
         ItemStack hand = player.getItemInHand();
-
+        ItemsManager manager = Main.cache.get(player.getUniqueId());
         if (manager.getItems().contains(hand)) {
             e.setCancelled(true);
-
             return;
         }
 

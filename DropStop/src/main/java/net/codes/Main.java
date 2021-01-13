@@ -14,7 +14,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        Bukkit.getPluginManager().registerEvents(new DropListener(), this);
+        Bukkit.getPluginManager().registerEvents(new DropListener(this), this);
         getCommand("lockitem").setExecutor(new DropCommand(this));
 
     }
