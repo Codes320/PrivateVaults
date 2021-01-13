@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public final class Main extends JavaPlugin {
 
-    public static HashMap<UUID, ItemsManager> lockedItems = new HashMap<>();
+    public static HashMap<UUID, ItemsManager> cache = new HashMap<>();
 
     ItemsManager manager;
 
@@ -20,7 +20,7 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
 
         Bukkit.getPluginManager().registerEvents(new DropListener(), this);
-        getCommand("lockitem").setExecutor(new DropCommand());
+        getCommand("lockitem").setExecutor(new DropCommand(this));
 
     }
 
