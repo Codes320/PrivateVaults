@@ -18,7 +18,7 @@ public class DropCommand implements CommandExecutor {
     @Override public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         Player player = (Player) sender;
-        ItemStack hand = player.getItemInHand();
+        ItemStack hand = player.getInventory().getItemInMainHand();
 
         if (!(manager.cache.containsKey(player.getUniqueId()))) {
             ItemsManager itmanager = new ItemsManager();
@@ -34,10 +34,10 @@ public class DropCommand implements CommandExecutor {
             player.sendMessage(ChatColor.RED + "You don't have permission to use that command!");
         } else if (itmanager.getItems().contains(hand)) {
             player.sendMessage(ChatColor.GREEN + "Item has been removed from your locked list.");
-            itmanager.getItems().remove(player.getItemInHand());
+            itmanager.getItems().remove(player.getInventory().getItemInMainHand());
         } else {
             player.sendMessage(ChatColor.GREEN + "Item has been locked in your inventory.");
-            itmanager.getItems().add(player.getItemInHand());
+            itmanager.getItems().add(player.getInventory().getItemInMainHand());
         }
 
         return false;
