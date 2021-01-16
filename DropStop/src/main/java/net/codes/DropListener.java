@@ -1,5 +1,6 @@
 package net.codes;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -34,6 +35,11 @@ public class DropListener implements Listener {
                 player.sendMessage("Event 2 Triggered");
                 return;
             }
+            if (e.getItemDrop().getItemStack().getType().equals(Material.DIRT)) {
+                e.setCancelled(true);
+
+            }
         }
+
     }
 }
