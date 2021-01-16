@@ -19,19 +19,21 @@ public class DropListener implements Listener {
         Player player = e.getPlayer();
         ItemStack hand = e.getItemDrop().getItemStack();
         ItemsManager manager = Main.cache.get(player.getUniqueId());
-        for (ItemStack item : manager.getItems()){
-            player.sendMessage(item.toString());
-            player.sendMessage(hand.toString());
+        for (ItemStack item : manager.getItems()) {
+            if (e.getItemDrop().getItemStack() == item) {
+                player.getInventory().setItemInMainHand(e.getItemDrop().getItemStack());
+                e.getItemDrop().remove();
+                e.setCancelled(true);
+                player.sendMessage("Event 1 Triggered");
+                return;
+            }
+            if (e.getItemDrop().getItemStack().equals(item)) {
+                player.getInventory().setItemInMainHand(e.getItemDrop().getItemStack());
+                e.getItemDrop().remove();
+                e.setCancelled(true);
+                player.sendMessage("Event 2 Triggered");
+                return;
+            }
         }
-        player.sendMessage(hand.getType().name());
-        player.sendMessage("Event 1 Triggered");
-        if (manager.getItems().contains(hand)) {
-            e.setCancelled(true);
-            player.sendMessage("Event 2 Triggered");
-            return;
-
-
-        }
-
     }
 }

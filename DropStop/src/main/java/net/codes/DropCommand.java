@@ -1,6 +1,7 @@
 package net.codes;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -28,7 +29,7 @@ public class DropCommand implements CommandExecutor {
 
         if (!(sender instanceof Player)) {
             sender.sendMessage("This command is avaliable for players only!");
-        } else if (hand == null) {
+        } else if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
             player.sendMessage(ChatColor.RED + "You must be holding an item to use that command.");
         } else if (!player.hasPermission("dropstop.use")) {
             player.sendMessage(ChatColor.RED + "You don't have permission to use that command!");
