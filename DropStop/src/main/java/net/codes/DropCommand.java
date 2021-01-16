@@ -34,9 +34,11 @@ public class DropCommand implements CommandExecutor {
             player.sendMessage(ChatColor.RED + "You don't have permission to use that command!");
         } else if (itmanager.getItems().contains(hand)) {
             player.sendMessage(ChatColor.GREEN + "Item has been removed from your locked list.");
+            player.sendMessage(hand.toString());
             itmanager.getItems().remove(player.getInventory().getItemInMainHand());
         } else {
             player.sendMessage(ChatColor.GREEN + "Item has been locked in your inventory.");
+            player.sendMessage(hand.toString());
             itmanager.getItems().add(player.getInventory().getItemInMainHand());
         }
 
