@@ -1,24 +1,28 @@
 package net.codes;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public final class Main extends JavaPlugin {
 
-    public static HashMap<UUID, ItemsManager> cache = new HashMap<>();
-
+    private Map<UUID, ItemsManager> cache = new HashMap<>();
 
     @Override
     public void onEnable() {
-
-        Bukkit.getPluginManager().registerEvents(new DropListener(this), this);
+        // Plugin startup logic
         getCommand("lockitem").setExecutor(new DropCommand(this));
-
+        getServer().getPluginManager().registerEvents(new DropListener(this), this);
     }
 
+    @Override
+    public void onDisable() {
+        // Plugin shutdown logic
+    }
 
-
+    public Map<UUID, ItemsManager> getCache() {
+        return cache;
+    }
 }

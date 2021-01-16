@@ -1,22 +1,23 @@
 package net.codes;
 
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.Material;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ItemsManager {
-    private List<ItemStack> items;
+
+    private Set<Material> items;
 
     public ItemsManager () {
-        this.items = new ArrayList<>();
+        this.items = new HashSet<>();
     }
 
-    public List<ItemStack> getItems() {
+    public Set<Material> getItems() {
         return this.items;
     }
 
-    public boolean checkIfBlocked(ItemStack item) {
+    public boolean checkIfBlocked(Material item) {
         if (this.items.contains(item)) return true;
         return false;
     }
