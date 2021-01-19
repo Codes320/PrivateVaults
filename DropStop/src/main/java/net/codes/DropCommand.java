@@ -41,9 +41,6 @@ public class DropCommand implements CommandExecutor {
                 return true;
             }
 
-            if(!core.getCache().containsKey(player.getUniqueId())) {
-                core.getCache().put(player.getUniqueId(), new ItemsManager());
-            }
 
             ItemsManager manager = core.getCache().get(player.getUniqueId());
 

@@ -5,6 +5,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 public class DropListener implements Listener {
 
@@ -29,6 +31,16 @@ public class DropListener implements Listener {
             event.setCancelled(true);
         }
 
+    }
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event) {
+        StorageAPI.loadPlayer(event.getPlayer().getUniqueId().toString());
+    }
+
+    @EventHandler
+    public void onQuit(PlayerQuitEvent event) {
+        StorageAPI.savePlayer(core.getCache().get(event.getPlayer().getUniqueId()));
     }
 
 }
