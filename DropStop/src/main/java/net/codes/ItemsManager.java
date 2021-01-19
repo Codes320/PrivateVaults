@@ -29,6 +29,10 @@ public class ItemsManager {
     }
 
     public boolean checkIfBlocked(Material item) {
+        if (this.items == null) {
+            this.items = new HashSet<>();
+            return true;
+        }
         if (this.items.contains(item)) return true;
         return false;
     }

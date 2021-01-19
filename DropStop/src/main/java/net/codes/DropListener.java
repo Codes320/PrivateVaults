@@ -35,7 +35,7 @@ public class DropListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        StorageAPI.loadPlayer(event.getPlayer().getUniqueId().toString());
+        StorageAPI.loadPlayer(event.getPlayer().getName());
     }
 
     @EventHandler

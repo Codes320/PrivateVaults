@@ -18,7 +18,7 @@ public class StorageAPI {
             @Override
             public void run() {
                 File playerFile = new File(Main.getInstance().getDataFolder().getPath() + File.separator +
-                        manager.getPlayerUUID() + ".yml");
+                        "/players/" + manager.getPlayerUUID() + ".yml");
                 if (!(playerFile.exists())) {
                     try {
                         playerFile.createNewFile();
@@ -48,7 +48,7 @@ public class StorageAPI {
             public void run() {
 
                 File playerFile = new File(Main.getInstance().getDataFolder().getPath() + File.separator +
-                        playerName + ".yml");
+                        "/players/" + Bukkit.getPlayerExact(playerName).getUniqueId().toString() + ".yml");
 
                 if (!(playerFile.exists())) {
                     try {
@@ -60,16 +60,24 @@ public class StorageAPI {
                     try {
                         String object = YamlConfiguration.loadConfiguration(playerFile).getString("data");
                         Gson gson = new Gson();
-                        ItemsManager manager = gson.fromJson(object, ItemsManager.class);
-                        UUID player = Bukkit.getPlayerExact(playerName).getUniqueId();
-                        Main.cache.put(player, manager);
+
+                        if (!(object.isEmpty())) {
+                            ItemsManager manager = gson.fromJson(object, ItemsManager.class);
+                            UUID player = Bukkit.getPlayerExact(playerName).getUniqueId();
+                            Main.cache.put(player, manager);
+                        } else {
+                            ItemsManager manager = new ItemsManager(playerName);
+                            UUID player = Bukkit.getPlayerExact(playerName).getUniqueId();
+                            Main.cache.put(player, manager);
+                            savePlayer(manager);
+                        }
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
 
             }
-
         });
 
 
