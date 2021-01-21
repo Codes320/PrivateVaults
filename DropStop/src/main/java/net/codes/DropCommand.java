@@ -7,8 +7,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.UUID;
-
 public class DropCommand implements CommandExecutor {
 
     private final Main core;
@@ -42,14 +40,14 @@ public class DropCommand implements CommandExecutor {
                 player.sendMessage(ChatColor.RED + "You must be holding an item to use this command!");
                 return true;
             }
-            UUID playerUUID = player.getUniqueId();
 
-            ItemsManager manager = core.getCache().get(playerUUID);
-            if (manager == null) {
-                manager = new ItemsManager(playerUUID.toString());
-                core.getCache().replace(player.getUniqueId(), manager);
+            if(!core.getCache().containsKey(player.getUniqueId())) {
+                core.getCache().put(player.getUniqueId(), new ItemsManager());
             }
-            if(manager.checkIfBlocked(hand)) {
+
+            ItemsManager manager = core.getCache().get(player.getUniqueId());
+
+            if(manager.checkIfBlocked(hand) == true) {
                 manager.getItems().remove(hand);
                 player.sendMessage(ChatColor.GREEN + "Item has been removed from your lock list!");
             } else {
