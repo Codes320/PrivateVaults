@@ -47,6 +47,7 @@ public class LockCommand implements CommandExecutor {
             }
 
             if (main.getCache().get(playerUUID).contains(hand)) {
+                main.getCache().get(playerUUID).remove(hand);
                 player.sendMessage(ChatColor.GREEN + "Item has been removed from your lock list.");
             } else {
                 main.getCache().get(playerUUID).add(hand);

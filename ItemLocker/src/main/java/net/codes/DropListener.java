@@ -34,13 +34,16 @@ public class DropListener implements Listener {
 
     }
 
+
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
+
 
     }
 
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
+
 
     }
 }
