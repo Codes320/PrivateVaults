@@ -1,5 +1,6 @@
 package net.codes;
 
+
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -55,7 +56,7 @@ public final class Main extends JavaPlugin {
 
     public void saveItems() {
         for (Map.Entry<UUID, List<String>> entry : cache.entrySet()) {
-            getModifyPlayerData().set("data" + entry.getKey(), entry.getValue());
+            getModifyPlayerData().set("data." + entry.getKey(), entry.getValue());
             try {
                 this.getModifyPlayerData().save(this.getPlayerData());
             } catch (IOException e) {
@@ -66,9 +67,13 @@ public final class Main extends JavaPlugin {
     }
 
     public void loadItems() {
-        this.getModifyPlayerData().getConfigurationSection("data").getKeys(false).forEach( key -> {
-// What do I do here
+        getModifyPlayerData().getConfigurationSection("data").getKeys(false).forEach(key -> {
+            String content = this.getModifyPlayerData().getString("data" + key);
+            cache.put(key, content);
         });
+
+
+// What do I do here
 
     }
 
