@@ -26,6 +26,7 @@ public final class Main extends JavaPlugin {
         this.saveDefaultConfig();
         initiateFiles();
 
+
         if (this.modifyPlayerData.contains("data")) {
             loadItems();
         }
@@ -67,13 +68,11 @@ public final class Main extends JavaPlugin {
     }
 
     public void loadItems() {
-        getModifyPlayerData().getConfigurationSection("data").getKeys(false).forEach(key -> {
-            String content = this.getModifyPlayerData().getString("data" + key);
-            cache.put(key, content);
-        });
+        for (String uuid : getModifyPlayerData().getConfigurationSection("data").getKeys(false)) {
+            cache.put(UUID.fromString(uuid), getModifyPlayerData().getStringList("data." + uuid));
+            Bukkit.getConsoleSender().sendMessage(UUID.fromString(uuid).toString());
 
-
-// What do I do here
+        }
 
     }
 
