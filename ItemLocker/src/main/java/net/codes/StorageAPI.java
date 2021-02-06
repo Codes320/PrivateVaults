@@ -48,9 +48,7 @@ public class StorageAPI {
                     main.getCache().put(UUID.fromString(uuid), getModifyPlayerData().getStringList("data." + uuid));
                     Bukkit.getConsoleSender().sendMessage(UUID.fromString(uuid).toString());
                 }
-
             }
-
         }
 
     public YamlConfiguration getModifyPlayerData() { return modifyPlayerData; }
