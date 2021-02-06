@@ -19,7 +19,7 @@ public class StorageAPI {
 
 
     public void initiateFiles() {
-        playerData = new File(Bukkit.getServer().getPluginManager().getPlugin("ItemLocker").getDataFolder(), "data.yml");
+        this.playerData = new File(Bukkit.getServer().getPluginManager().getPlugin("ItemLocker").getDataFolder(), "data.yml");
         if (!playerData.exists()) {
             try {
                 playerData.createNewFile();
@@ -28,7 +28,7 @@ public class StorageAPI {
             }
 
         }
-        modifyPlayerData = YamlConfiguration.loadConfiguration(playerData);
+        this.modifyPlayerData = YamlConfiguration.loadConfiguration(playerData);
     }
 
     public void saveItems() {
@@ -48,9 +48,7 @@ public class StorageAPI {
                     main.getCache().put(UUID.fromString(uuid), getModifyPlayerData().getStringList("data." + uuid));
                     Bukkit.getConsoleSender().sendMessage(UUID.fromString(uuid).toString());
                 }
-
             }
-
         }
 
     public YamlConfiguration getModifyPlayerData() { return modifyPlayerData; }

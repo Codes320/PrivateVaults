@@ -26,6 +26,9 @@ public class LockCommand implements CommandExecutor {
             Player player = (Player) sender;
             String hand = player.getInventory().getItemInMainHand().getType().toString();
             UUID playerUUID = player.getUniqueId();
+            String lockMessage = main.getConfig().getString("LockMessage");
+            String unlockMessage = main.getConfig().getString("UnlockMessage");
+
 
             if (!(sender instanceof Player)) {
                 sender.sendMessage(ChatColor.RED + "You're not a player...");
@@ -48,10 +51,10 @@ public class LockCommand implements CommandExecutor {
 
             if (main.getCache().get(playerUUID).contains(hand)) {
                 main.getCache().get(playerUUID).remove(hand);
-                player.sendMessage(ChatColor.GREEN + "Item has been removed from your lock list.");
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', unlockMessage));
             } else {
                 main.getCache().get(playerUUID).add(hand);
-                player.sendMessage(ChatColor.GREEN + "Item has been added to your lock list.");
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', lockMessage));
 
             }
 
