@@ -18,6 +18,7 @@ public final class Main extends JavaPlugin {
     private HashMap<UUID, List<String>> cache = new HashMap<>();
     private File playerData;
     private YamlConfiguration modifyPlayerData;
+    
 
     public void onEnable() {
         getCommand("lockitem").setExecutor(new LockCommand(this));
@@ -27,7 +28,7 @@ public final class Main extends JavaPlugin {
         initiateFiles();
 
 
-        if (this.modifyPlayerData.contains("data")) {
+        if (!this.modifyPlayerData.getConfigurationSection("data").getKeys(false).isEmpty()) {
             loadItems();
         }
     }
@@ -51,8 +52,8 @@ public final class Main extends JavaPlugin {
                 e.printStackTrace();
             }
 
-            modifyPlayerData = YamlConfiguration.loadConfiguration(playerData);
         }
+        modifyPlayerData = YamlConfiguration.loadConfiguration(playerData);
     }
 
     public void saveItems() {
@@ -68,9 +69,11 @@ public final class Main extends JavaPlugin {
     }
 
     public void loadItems() {
+        if (modifyPlayerData.getConfigurationSection("data") != null) {
         for (String uuid : getModifyPlayerData().getConfigurationSection("data").getKeys(false)) {
             cache.put(UUID.fromString(uuid), getModifyPlayerData().getStringList("data." + uuid));
             Bukkit.getConsoleSender().sendMessage(UUID.fromString(uuid).toString());
+        }
 
         }
 
