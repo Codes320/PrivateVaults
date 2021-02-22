@@ -1,3 +1,0 @@
-LockMessage: '&6&lItemLocker &r&7| &fYour item has been locked.'
-UnlockMessage: '&6&lItemLocker &r&7| &fYour item has been unlocked.'
-DropMessage: '&6&lItemLocker &r&7| &fThis item is locked! type /lock to unlock it.'
