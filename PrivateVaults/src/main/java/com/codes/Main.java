@@ -15,6 +15,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         getCommand("pv").setExecutor(new VaultCommand(this));
+        storageManager = new StorageManager(this);
         this.saveDefaultConfig();
 //        vaultsManager = new VaultsManager();
 //        userManager = new UserManager();
