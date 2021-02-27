@@ -33,22 +33,24 @@ public class VaultCommand implements CommandExecutor {
 
                 Player player = (Player) sender;
                 playerUUID = player.getUniqueId();
+                main.setPlayerUUID(playerUUID);
 
-//                if (args.length == 1) {
-//                    int i = Integer.parseInt(args[0]);
-                    main.getStorageManager().initiateFiles();
+                if (args.length == 1) {
+                    int i = Integer.parseInt(args[0]);
+                    main.setVaultNumber(i);
+
+            main.getStorageManager().initiateFiles();
                     player.sendMessage("UUID Generated");
+
+                    main.getStorageManager().loadItems();
 
                 }
 
                 if (args.length == 2) {
 
-//                }
+                }
 
         }
             return false;
     }
-
-    public UUID getPlayerUUID() { return playerUUID; }
-
 }

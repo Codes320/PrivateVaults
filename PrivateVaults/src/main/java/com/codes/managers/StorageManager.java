@@ -20,7 +20,7 @@ public class StorageManager {
 
 
     public void initiateFiles() {
-        this.dataFile = new File(Bukkit.getServer().getPluginManager().getPlugin("PrivateVaults").getDataFolder(), main.getVaultCommand().getPlayerUUID().toString() + ".yml");
+        this.dataFile = new File(Bukkit.getServer().getPluginManager().getPlugin("PrivateVaults").getDataFolder(), main.getPlayerUUID().toString() + ".yml");
 
         if (!dataFile.exists()) {
             try {
@@ -34,5 +34,24 @@ public class StorageManager {
         this.modifyDataFile = YamlConfiguration.loadConfiguration(dataFile);
     }
 
+    public void saveItems() {
 
+
+    }
+
+    public void loadItems() {
+
+        String vaultNumber = String.valueOf(main.getVaultNumber());
+        this.dataFile = new File(Bukkit.getServer().getPluginManager().getPlugin("PrivateVaults").getDataFolder(), main.getPlayerUUID().toString() + ".yml");
+
+        if (this.modifyDataFile.getConfigurationSection(vaultNumber) != null) {
+
+
+        } else {
+
+        }
+
+    }
+
+    public YamlConfiguration getModifyDataFile() { return modifyDataFile; }
 }

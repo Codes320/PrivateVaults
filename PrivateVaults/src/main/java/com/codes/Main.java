@@ -4,22 +4,20 @@ import com.codes.commands.VaultCommand;
 import com.codes.managers.StorageManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.UUID;
+
 public final class Main extends JavaPlugin {
 
-//    private VaultsManager vaultsManager;
-//    private UserManager userManager;
-    private StorageManager storageManager;
 
-//    private HashMap<Integer, VaultsManager> cache;
+    private StorageManager storageManager;
+    UUID playerUUID;
+    int vaultNumber;
 
     @Override
     public void onEnable() {
         getCommand("pv").setExecutor(new VaultCommand(this));
         storageManager = new StorageManager(this);
         this.saveDefaultConfig();
-//        vaultsManager = new VaultsManager();
-//        userManager = new UserManager();
-
     }
 
     @Override
@@ -27,10 +25,10 @@ public final class Main extends JavaPlugin {
         // Plugin shutdown logic
     }
 
-//    public VaultsManager getVaultsManager() { return this.vaultsManager; }
-//    public UserManager getUserManager() { return userManager; }
-    public VaultCommand getVaultCommand() { return getVaultCommand(); }
-    public StorageManager getStorageManager() { return storageManager; }
+    public void setPlayerUUID(UUID playerUUID) { this.playerUUID = playerUUID; }
+    public void setVaultNumber(int vaultNumber) { this.vaultNumber = vaultNumber; }
 
-    //    public HashMap<Integer, VaultsManager> getCache() { return this.cache; }
+    public UUID getPlayerUUID() { return playerUUID; }
+    public StorageManager getStorageManager() { return storageManager; }
+    public int getVaultNumber() { return vaultNumber; }
 }
